@@ -11,7 +11,7 @@ import Cocoa
 class ViewController: NSViewController {
     
     var action = 0
-    var image = NSImage()
+    var image  = NSImage()
     
     @IBOutlet weak var labelType: NSTextField!
     @IBOutlet weak var imageMain: NSImageView!
@@ -56,7 +56,7 @@ class ViewController: NSViewController {
         action = (sender as! NSSegmentedControl).selectedSegment
         switch action {
         case 0: tabView.selectTabViewItem(at: 0); labelType.stringValue = "for macOS"
-        case 1: tabView.selectTabViewItem(at: 1); labelType.stringValue = "for IOS"
+        case 1: tabView.selectTabViewItem(at: 1); labelType.stringValue = "for iOS"
         default: break
         }
     }
@@ -65,7 +65,7 @@ class ViewController: NSViewController {
         let dialog = NSOpenPanel()
         dialog.canChooseFiles = true
         dialog.canChooseDirectories = false
-        let choice = dialog.runModel()
+        let choice = dialog.runModal()
         
         if choice == NSFileHandlingPanelOKButton {
             if let url = dialog.url {
@@ -97,6 +97,7 @@ class ViewController: NSViewController {
         }
     }
     
+    
     func showMainImage(_ url: URL) {
         self.image = NSImage(byReferencingFile: url.path)!
         DispatchQueue.main.async { self.imageMain.image = self.image }
@@ -111,6 +112,7 @@ class ViewController: NSViewController {
         }
         
         DispatchQueue.main.async {
+            // macOS
             self.image016A.image = self.image.resize(  16,  16);
             self.image016B.image = self.image.resize(  32,  32);
             self.image032A.image = self.image.resize(  32,  32);
@@ -121,7 +123,7 @@ class ViewController: NSViewController {
             self.image256B.image = self.image.resize( 512, 512);
             self.image512A.image = self.image.resize( 512, 512);
             self.image512B.image = self.image.resize(1024,1024);
-
+            // iOS
             self.imageI01A.image = self.image.resize(  40,  40);
             self.imageI01B.image = self.image.resize(  60,  60);
             self.imageI02A.image = self.image.resize(  58,  58);
@@ -138,7 +140,6 @@ class ViewController: NSViewController {
             self.imageI07B.image = self.image.resize(  80,  80);
             self.imageI08A.image = self.image.resize(  76,  76);
             self.imageI08B.image = self.image.resize( 152, 152);
-
             self.imageI09B.image = self.image.resize( 167, 167);
         }
         
@@ -151,5 +152,58 @@ class ViewController: NSViewController {
         buttonFolder.isHidden = false
         buttonExport.isHidden = false
     }
-}
+    
+    func saveIosIconset(_ url: URL) {
+        let path = url.absoluteString
+        let json = url.appendingPathComponent("Contents.json")
+        
+        DispatchQueue.main.async {
+            if let source = Bundle.main.url(forResource: "Contents_ios", withExtension: "json") {
+                try? FileManager.default.removeItem(at: json)
+                try? FileManager.default.copyItem(at: source, to: json)
+            }
+            self.imageI01A.image?.save(path + "iphone020pts2x.png")
+            self.imageI01B.image?.save(path + "iphone020pts3x.png")
+            self.imageI02A.image?.save(path + "iphone029pts2x.png")
+            self.imageI02B.image?.save(path + "iphone029pts3x.png")
+            self.imageI03A.image?.save(path + "iphone040pts2x.png")
+            self.imageI03B.image?.save(path + "iphone040pts3x.png")
+            self.imageI04A.image?.save(path + "iphone060pts2x.png")
+            self.imageI04B.image?.save(path + "iphone060pts3x.png")
+            self.imageI05A.image?.save(path + "ipad020pts1x.png")
+            self.imageI05B.image?.save(path + "ipad020pts2x.png")
+            self.imageI06A.image?.save(path + "ipad029pts1x.png")
+            self.imageI06B.image?.save(path + "ipad029pts2x.png")
+            self.imageI07A.image?.save(path + "ipad040pts1x.png")
+            self.imageI07B.image?.save(path + "ipad040pts2x.png")
+            self.imageI08A.image?.save(path + "ipad076pts1x.png")
+            self.imageI08B.image?.save(path + "ipad076pts2x.png")
+            self.imageI09B.image?.save(path + "ipad083pts2x.png")
+        }
+        
+    }
+    
+    func saveMacIconset(_ url: URL) {
+        let path = url.absoluteString
+        let json = url.appendingPathComponent("Contents.json")
+        
+        DispatchQueue.main.async {
+            if let source = Bundle.main.url(forResource: "Contents_mac", withExtension: "json") {
+                try? FileManager.default.removeItem(at: json)
+                try? FileManager.default.copyItem(at: source, to: json)
+            }
 
+            self.image016A.image?.save(path + "mac016pts1x.png")
+            self.image016B.image?.save(path + "mac016pts2x.png")
+            self.image032A.image?.save(path + "mac032pts1x.png")
+            self.image032B.image?.save(path + "mac032pts2x.png")
+            self.image128A.image?.save(path + "mac128pts1x.png")
+            self.image128B.image?.save(path + "mac128pts2x.png")
+            self.image256A.image?.save(path + "mac256pts1x.png")
+            self.image256B.image?.save(path + "mac256pts2x.png")
+            self.image512A.image?.save(path + "mac512pts1x.png")
+            self.image512B.image?.save(path + "mac512pts2x.png")
+        }
+    }
+    
+}
