@@ -217,4 +217,17 @@ extension NSImage {
             else { return nil }
         return bitmapImage.representation(using: .PNG, properties: [:])
     }
+    
+    func resize(_ width: CGFloat, _ height: CGFloat) -> NSImage {
+        let img = NSImage(size: CGSize(width: width, height: height))
+        img.lockFocus()
+        let ctx = NSGraphicsContext.current()
+        ctx?.imageInterpolation = .high
+        let oldRect = NSMakeRect(0, 0, size.width, size.height)
+        let newRect = NSMakeRect(0, 0, width, height)
+        self.draw(in: newRect, from: oldRect, operation: .copy, fraction: 1)
+        img.unlockFocus()
+        
+        return img
+    }
 }
