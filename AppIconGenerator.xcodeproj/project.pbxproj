@@ -15,6 +15,8 @@
 		8105422326A1AF25008644C7 /* AppIconGeneratorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8105422226A1AF25008644C7 /* AppIconGeneratorUITests.swift */; };
 		8105423126A1AF44008644C7 /* VideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8105423026A1AF44008644C7 /* VideController.swift */; };
 		8105423326A1AFBB008644C7 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 8105423226A1AFBB008644C7 /* .gitignore */; };
+		8105423526A1B0C2008644C7 /* Contents_ios.json in Resources */ = {isa = PBXBuildFile; fileRef = 8105423426A1B0C2008644C7 /* Contents_ios.json */; };
+		8105423726A1B0C8008644C7 /* Contents_mac.json in Resources */ = {isa = PBXBuildFile; fileRef = 8105423626A1B0C8008644C7 /* Contents_mac.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,8 @@
 		8105422426A1AF25008644C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8105423026A1AF44008644C7 /* VideController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideController.swift; sourceTree = "<group>"; };
 		8105423226A1AFBB008644C7 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		8105423426A1B0C2008644C7 /* Contents_ios.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Contents_ios.json; sourceTree = "<group>"; };
+		8105423626A1B0C8008644C7 /* Contents_mac.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Contents_mac.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,8 @@
 		8105420326A1AF25008644C7 /* AppIconGenerator */ = {
 			isa = PBXGroup;
 			children = (
+				8105423626A1B0C8008644C7 /* Contents_mac.json */,
+				8105423426A1B0C2008644C7 /* Contents_ios.json */,
 				8105420426A1AF25008644C7 /* AppDelegate.swift */,
 				8105420626A1AF25008644C7 /* ViewController.swift */,
 				8105420826A1AF25008644C7 /* Assets.xcassets */,
@@ -235,8 +241,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8105420926A1AF25008644C7 /* Assets.xcassets in Resources */,
+				8105423526A1B0C2008644C7 /* Contents_ios.json in Resources */,
 				8105423326A1AFBB008644C7 /* .gitignore in Resources */,
 				8105420C26A1AF25008644C7 /* Main.storyboard in Resources */,
+				8105423726A1B0C8008644C7 /* Contents_mac.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +440,7 @@
 				CODE_SIGN_ENTITLEMENTS = AppIconGenerator/AppIconGenerator.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 32QP46JEL2;
 				INFOPLIST_FILE = AppIconGenerator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -450,6 +459,7 @@
 				CODE_SIGN_ENTITLEMENTS = AppIconGenerator/AppIconGenerator.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 32QP46JEL2;
 				INFOPLIST_FILE = AppIconGenerator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
