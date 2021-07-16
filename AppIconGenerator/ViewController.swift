@@ -47,5 +47,10 @@ class ViewController: NSViewController {
     @IBOutlet weak var imageI08B: NSImageView!
     @IBOutlet weak var imageI09A: NSImageView!
     @IBOutlet weak var imageI09B: NSImageView!
+    
+    @IBOutlet weak var buttonFolder: NSButton!
+    @IBOutlet weak var buttonExport: NSButton!
+    @IBOutlet weak var tabView: NSTabView!
+    
 }
 
