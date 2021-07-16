@@ -27,5 +27,25 @@ class ViewController: NSViewController {
     @IBOutlet weak var image256B: NSImageView!
     @IBOutlet weak var image512A: NSImageView!
     @IBOutlet weak var image512B: NSImageView!
+    
+    // ios
+    @IBOutlet weak var imageI01A: NSImageView!
+    @IBOutlet weak var imageI01B: NSImageView!
+    @IBOutlet weak var imageI02A: NSImageView!
+    @IBOutlet weak var imageI02B: NSImageView!
+    @IBOutlet weak var imageI03A: NSImageView!
+    @IBOutlet weak var imageI03B: NSImageView!
+    @IBOutlet weak var imageI04A: NSImageView!
+    @IBOutlet weak var imageI04B: NSImageView!
+    @IBOutlet weak var imageI05A: NSImageView!
+    @IBOutlet weak var imageI05B: NSImageView!
+    @IBOutlet weak var imageI06A: NSImageView!
+    @IBOutlet weak var imageI06B: NSImageView!
+    @IBOutlet weak var imageI07A: NSImageView!
+    @IBOutlet weak var imageI07B: NSImageView!
+    @IBOutlet weak var imageI08A: NSImageView!
+    @IBOutlet weak var imageI08B: NSImageView!
+    @IBOutlet weak var imageI09A: NSImageView!
+    @IBOutlet weak var imageI09B: NSImageView!
 }
 
