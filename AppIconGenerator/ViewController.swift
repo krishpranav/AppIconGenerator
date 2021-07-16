@@ -52,5 +52,14 @@ class ViewController: NSViewController {
     @IBOutlet weak var buttonExport: NSButton!
     @IBOutlet weak var tabView: NSTabView!
     
+    @IBAction func onIconType(_ sender: Any) {
+        action = (sender as! NSSegmentedControl).selectedSegment
+        switch action {
+        case 0: tabView.selectTabViewItem(at: 0); labelType.stringValue = "for macOS"
+        case 1: tabView.selectTabViewItem(at: 1); labelType.stringValue = "for IOS"
+        default: break 
+        }
+    }
+    
 }
 
