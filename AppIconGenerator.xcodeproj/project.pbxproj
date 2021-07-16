@@ -13,7 +13,6 @@
 		8105420C26A1AF25008644C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8105420A26A1AF25008644C7 /* Main.storyboard */; };
 		8105421826A1AF25008644C7 /* AppIconGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8105421726A1AF25008644C7 /* AppIconGeneratorTests.swift */; };
 		8105422326A1AF25008644C7 /* AppIconGeneratorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8105422226A1AF25008644C7 /* AppIconGeneratorUITests.swift */; };
-		8105423126A1AF44008644C7 /* VideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8105423026A1AF44008644C7 /* VideController.swift */; };
 		8105423326A1AFBB008644C7 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 8105423226A1AFBB008644C7 /* .gitignore */; };
 		8105423526A1B0C2008644C7 /* Contents_ios.json in Resources */ = {isa = PBXBuildFile; fileRef = 8105423426A1B0C2008644C7 /* Contents_ios.json */; };
 		8105423726A1B0C8008644C7 /* Contents_mac.json in Resources */ = {isa = PBXBuildFile; fileRef = 8105423626A1B0C8008644C7 /* Contents_mac.json */; };
@@ -50,7 +49,6 @@
 		8105421E26A1AF25008644C7 /* AppIconGeneratorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppIconGeneratorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8105422226A1AF25008644C7 /* AppIconGeneratorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconGeneratorUITests.swift; sourceTree = "<group>"; };
 		8105422426A1AF25008644C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8105423026A1AF44008644C7 /* VideController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideController.swift; sourceTree = "<group>"; };
 		8105423226A1AFBB008644C7 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		8105423426A1B0C2008644C7 /* Contents_ios.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Contents_ios.json; sourceTree = "<group>"; };
 		8105423626A1B0C8008644C7 /* Contents_mac.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Contents_mac.json; sourceTree = "<group>"; };
@@ -113,7 +111,6 @@
 				8105420A26A1AF25008644C7 /* Main.storyboard */,
 				8105420D26A1AF25008644C7 /* Info.plist */,
 				8105420E26A1AF25008644C7 /* AppIconGenerator.entitlements */,
-				8105423026A1AF44008644C7 /* VideController.swift */,
 			);
 			path = AppIconGenerator;
 			sourceTree = "<group>";
@@ -271,7 +268,6 @@
 			files = (
 				8105420726A1AF25008644C7 /* ViewController.swift in Sources */,
 				8105420526A1AF25008644C7 /* AppDelegate.swift in Sources */,
-				8105423126A1AF44008644C7 /* VideController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,7 +444,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.AppIconGenerator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -467,7 +463,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.AppIconGenerator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -486,7 +482,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.AppIconGeneratorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AppIconGenerator.app/Contents/MacOS/AppIconGenerator";
 			};
 			name = Debug;
@@ -506,7 +502,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.AppIconGeneratorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AppIconGenerator.app/Contents/MacOS/AppIconGenerator";
 			};
 			name = Release;
@@ -525,7 +521,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.AppIconGeneratorUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = AppIconGenerator;
 			};
 			name = Debug;
@@ -544,7 +540,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.AppIconGeneratorUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = AppIconGenerator;
 			};
 			name = Release;

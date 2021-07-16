@@ -29,7 +29,7 @@ class ViewController: NSViewController {
     @IBOutlet weak var image512A: NSImageView!
     @IBOutlet weak var image512B: NSImageView!
     
-    // ios
+    // IOS
     @IBOutlet weak var imageI01A: NSImageView!
     @IBOutlet weak var imageI01B: NSImageView!
     @IBOutlet weak var imageI02A: NSImageView!
@@ -68,7 +68,7 @@ class ViewController: NSViewController {
         dialog.canChooseDirectories = false
         let choice = dialog.runModal()
         
-        if choice.rawValue == NSApplication.ModalResponse.OK.rawValue {
+        if choice == NSFileHandlingPanelOKButton {
             if let url = dialog.url {
                 showMainImage(url)
                 generateImages()
@@ -78,7 +78,7 @@ class ViewController: NSViewController {
     
     @IBAction func openFolder(_ sender: Any) {
         let folder = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask).first!
-        NSWorkspace.shared.open(folder)
+        NSWorkspace.shared().open(folder)
     }
     
     @IBAction func onExport(_ sender: Any) {
@@ -87,7 +87,7 @@ class ViewController: NSViewController {
         dialog.canChooseDirectories = true
         let choice = dialog.runModal()
         
-        if choice.rawValue == NSFileHandlingPanelOKButton {
+        if choice == NSFileHandlingPanelOKButton {
             if let folder = dialog.url {
                 if action == 1 {
                     saveIosIconset(folder)
@@ -112,7 +112,7 @@ class ViewController: NSViewController {
             try? FileManager.default.createDirectory(at: folder, withIntermediateDirectories: false, attributes: nil)
         }
         
-
+        // First generate all icons
         DispatchQueue.main.async {
             // macOS
             self.image016A.image = self.image.resize(  16,  16);
@@ -142,9 +142,11 @@ class ViewController: NSViewController {
             self.imageI07B.image = self.image.resize(  80,  80);
             self.imageI08A.image = self.image.resize(  76,  76);
             self.imageI08B.image = self.image.resize( 152, 152);
+            //self.imageI09A.image = self.image.resize(  84,  84);
             self.imageI09B.image = self.image.resize( 167, 167);
         }
         
+        // Then save only selected OS
         if action == 1 {
             saveIosIconset(folder)
         } else {
@@ -160,11 +162,12 @@ class ViewController: NSViewController {
         let json = url.appendingPathComponent("Contents.json")
         
         DispatchQueue.main.async {
+            // Generate Contents.json
             if let source = Bundle.main.url(forResource: "Contents_ios", withExtension: "json") {
-                try? FileManager.default.removeItem(at: json)
-                try? FileManager.default.copyItem(at: source, to: json)
+                try? FileManager.default.removeItem(at: json)           // Remove
+                try? FileManager.default.copyItem(at: source, to: json) // Create
             }
-            
+            // Save ios icons
             self.imageI01A.image?.save(path + "iphone020pts2x.png")
             self.imageI01B.image?.save(path + "iphone020pts3x.png")
             self.imageI02A.image?.save(path + "iphone029pts2x.png")
@@ -181,6 +184,7 @@ class ViewController: NSViewController {
             self.imageI07B.image?.save(path + "ipad040pts2x.png")
             self.imageI08A.image?.save(path + "ipad076pts1x.png")
             self.imageI08B.image?.save(path + "ipad076pts2x.png")
+            //self.imageI09A.image?.save(path + "ipad083pts1x.png")
             self.imageI09B.image?.save(path + "ipad083pts2x.png")
         }
         
@@ -191,11 +195,12 @@ class ViewController: NSViewController {
         let json = url.appendingPathComponent("Contents.json")
         
         DispatchQueue.main.async {
+            // Generate Contents.json
             if let source = Bundle.main.url(forResource: "Contents_mac", withExtension: "json") {
-                try? FileManager.default.removeItem(at: json)
-                try? FileManager.default.copyItem(at: source, to: json)
+                try? FileManager.default.removeItem(at: json)           // Remove
+                try? FileManager.default.copyItem(at: source, to: json) // Create
             }
-            
+            // Save mac icons
             self.image016A.image?.save(path + "mac016pts1x.png")
             self.image016B.image?.save(path + "mac016pts2x.png")
             self.image032A.image?.save(path + "mac032pts1x.png")
@@ -212,6 +217,7 @@ class ViewController: NSViewController {
 }
 
 
+// NSIMAGE EXTENSIONS
 
 extension NSImage {
     var pngData: Data? {
@@ -219,13 +225,13 @@ extension NSImage {
             let tiffRepresentation = tiffRepresentation,
             let bitmapImage = NSBitmapImageRep(data: tiffRepresentation)
             else { return nil }
-        return bitmapImage.representation(using: .png, properties: [:])
+        return bitmapImage.representation(using: .PNG, properties: [:])
     }
     
     func resize(_ width: CGFloat, _ height: CGFloat) -> NSImage {
         let img = NSImage(size: CGSize(width: width, height: height))
         img.lockFocus()
-        let ctx = NSGraphicsContext.current
+        let ctx = NSGraphicsContext.current()
         ctx?.imageInterpolation = .high
         let oldRect = NSMakeRect(0, 0, size.width, size.height)
         let newRect = NSMakeRect(0, 0, width, height)
@@ -249,3 +255,4 @@ extension NSImage {
     }
 }
 
+// End
