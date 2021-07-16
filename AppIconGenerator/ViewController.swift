@@ -6,6 +6,7 @@
 //  Copyright © 2021 krisna pranav. All rights reserved.
 //
 
+// imports
 import Cocoa
 
 class ViewController: NSViewController {
@@ -67,7 +68,7 @@ class ViewController: NSViewController {
         dialog.canChooseDirectories = false
         let choice = dialog.runModal()
         
-        if choice == NSFileHandlingPanelOKButton {
+        if choice.rawValue == NSApplication.ModalResponse.OK.rawValue {
             if let url = dialog.url {
                 showMainImage(url)
                 generateImages()
@@ -77,7 +78,7 @@ class ViewController: NSViewController {
     
     @IBAction func openFolder(_ sender: Any) {
         let folder = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask).first!
-        NSWorkspace.shared().open(folder)
+        NSWorkspace.shared.open(folder)
     }
     
     @IBAction func onExport(_ sender: Any) {
@@ -86,7 +87,7 @@ class ViewController: NSViewController {
         dialog.canChooseDirectories = true
         let choice = dialog.runModal()
         
-        if choice == NSFileHandlingPanelOKButton {
+        if choice.rawValue == NSFileHandlingPanelOKButton {
             if let folder = dialog.url {
                 if action == 1 {
                     saveIosIconset(folder)
@@ -111,6 +112,7 @@ class ViewController: NSViewController {
             try? FileManager.default.createDirectory(at: folder, withIntermediateDirectories: false, attributes: nil)
         }
         
+
         DispatchQueue.main.async {
             // macOS
             self.image016A.image = self.image.resize(  16,  16);
@@ -162,6 +164,7 @@ class ViewController: NSViewController {
                 try? FileManager.default.removeItem(at: json)
                 try? FileManager.default.copyItem(at: source, to: json)
             }
+            
             self.imageI01A.image?.save(path + "iphone020pts2x.png")
             self.imageI01B.image?.save(path + "iphone020pts3x.png")
             self.imageI02A.image?.save(path + "iphone029pts2x.png")
@@ -192,7 +195,7 @@ class ViewController: NSViewController {
                 try? FileManager.default.removeItem(at: json)
                 try? FileManager.default.copyItem(at: source, to: json)
             }
-
+            
             self.image016A.image?.save(path + "mac016pts1x.png")
             self.image016B.image?.save(path + "mac016pts2x.png")
             self.image032A.image?.save(path + "mac032pts1x.png")
@@ -209,19 +212,20 @@ class ViewController: NSViewController {
 }
 
 
+
 extension NSImage {
     var pngData: Data? {
         guard
             let tiffRepresentation = tiffRepresentation,
             let bitmapImage = NSBitmapImageRep(data: tiffRepresentation)
             else { return nil }
-        return bitmapImage.representation(using: .PNG, properties: [:])
+        return bitmapImage.representation(using: .png, properties: [:])
     }
     
     func resize(_ width: CGFloat, _ height: CGFloat) -> NSImage {
         let img = NSImage(size: CGSize(width: width, height: height))
         img.lockFocus()
-        let ctx = NSGraphicsContext.current()
+        let ctx = NSGraphicsContext.current
         ctx?.imageInterpolation = .high
         let oldRect = NSMakeRect(0, 0, size.width, size.height)
         let newRect = NSMakeRect(0, 0, width, height)
@@ -230,4 +234,18 @@ extension NSImage {
         
         return img
     }
+    
+    @discardableResult
+    func save(_ path: String) -> Bool {
+        guard let url = URL(string: path) else { return false }
+        
+        do {
+            try pngData?.write(to: url, options: .atomic)
+            return true
+        } catch {
+            print(error.localizedDescription)
+            return false
+        }
+    }
 }
+
