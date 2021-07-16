@@ -80,5 +80,76 @@ class ViewController: NSViewController {
         NSWorkspace.shared().open(folder)
     }
     
+    @IBAction func onExport(_ sender: Any) {
+        let dialog = NSOpenPanel()
+        dialog.canChooseFiles = false
+        dialog.canChooseDirectories = true
+        let choice = dialog.runModal()
+        
+        if choice == NSFileHandlingPanelOKButton {
+            if let folder = dialog.url {
+                if action == 1 {
+                    saveIosIconset(folder)
+                } else {
+                    saveMacIconset(folder)
+                }
+            }
+        }
+    }
+    
+    func showMainImage(_ url: URL) {
+        self.image = NSImage(byReferencingFile: url.path)!
+        DispatchQueue.main.async { self.imageMain.image = self.image }
+    }
+    
+    func generateImages() {
+        var folder = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask).first!
+        folder.appendPathComponent("AppIcon.appiconset", isDirectory: true)
+        var isFolder: ObjCBool = true
+        if !FileManager.default.fileExists(atPath: folder.path, isDirectory: &isFolder) {
+            try? FileManager.default.createDirectory(at: folder, withIntermediateDirectories: false, attributes: nil)
+        }
+        
+        DispatchQueue.main.async {
+            self.image016A.image = self.image.resize(  16,  16);
+            self.image016B.image = self.image.resize(  32,  32);
+            self.image032A.image = self.image.resize(  32,  32);
+            self.image032B.image = self.image.resize(  64,  64);
+            self.image128A.image = self.image.resize( 128, 128);
+            self.image128B.image = self.image.resize( 256, 256);
+            self.image256A.image = self.image.resize( 256, 256);
+            self.image256B.image = self.image.resize( 512, 512);
+            self.image512A.image = self.image.resize( 512, 512);
+            self.image512B.image = self.image.resize(1024,1024);
+
+            self.imageI01A.image = self.image.resize(  40,  40);
+            self.imageI01B.image = self.image.resize(  60,  60);
+            self.imageI02A.image = self.image.resize(  58,  58);
+            self.imageI02B.image = self.image.resize(  87,  87);
+            self.imageI03A.image = self.image.resize(  80,  80);
+            self.imageI03B.image = self.image.resize( 120, 120);
+            self.imageI04A.image = self.image.resize( 120, 120);
+            self.imageI04B.image = self.image.resize( 180, 180);
+            self.imageI05A.image = self.image.resize(  20,  20);
+            self.imageI05B.image = self.image.resize(  40,  40);
+            self.imageI06A.image = self.image.resize(  29,  29);
+            self.imageI06B.image = self.image.resize(  58,  58);
+            self.imageI07A.image = self.image.resize(  40,  40);
+            self.imageI07B.image = self.image.resize(  80,  80);
+            self.imageI08A.image = self.image.resize(  76,  76);
+            self.imageI08B.image = self.image.resize( 152, 152);
+
+            self.imageI09B.image = self.image.resize( 167, 167);
+        }
+        
+        if action == 1 {
+            saveIosIconset(folder)
+        } else {
+            saveMacIconset(folder)
+        }
+        
+        buttonFolder.isHidden = false
+        buttonExport.isHidden = false
+    }
 }
 
