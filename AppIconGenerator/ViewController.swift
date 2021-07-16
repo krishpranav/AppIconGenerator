@@ -13,6 +13,9 @@ class ViewController: NSViewController {
     var action = 0
     var image = NSImage()
     
+    @IBOutlet weak var labelType: NSTextField!
+    @IBOutlet weak var imageMain: NSImageView!
+    
     
 }
 
