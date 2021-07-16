@@ -57,8 +57,27 @@ class ViewController: NSViewController {
         switch action {
         case 0: tabView.selectTabViewItem(at: 0); labelType.stringValue = "for macOS"
         case 1: tabView.selectTabViewItem(at: 1); labelType.stringValue = "for IOS"
-        default: break 
+        default: break
         }
+    }
+    
+    @IBAction func onSelected(_ sender: Any) {
+        let dialog = NSOpenPanel()
+        dialog.canChooseFiles = true
+        dialog.canChooseDirectories = false
+        let choice = dialog.runModel()
+        
+        if choice == NSFileHandlingPanelOKButton {
+            if let url = dialog.url {
+                showMainImage(url)
+                generateImages()
+            }
+        }
+    }
+    
+    @IBAction func openFolder(_ sender: Any) {
+        let folder = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask).first!
+        NSWorkspace.shared().open(folder)
     }
     
 }
